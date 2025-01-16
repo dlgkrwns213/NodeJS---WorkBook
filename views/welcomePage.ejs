@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Webpage</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-header">
+        <h3><%= %>의 단어장</h3>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <main>
+      <section id="home" class="hero">
+          <h1>Welcome to Our Modern Website</h1>
+          <p>Experience the future of web design</p>
+          <a href="#contact" class="cta-button">Get Started</a>
+      </section>
+
+      <section id="about" class="content-section">
+          <h2>About Us</h2>
+          <p>We are a team of passionate designers and developers creating modern web experiences.</p>
+      </section>
+
+      <section id="services" class="content-section">
+          <h2>Our Services</h2>
+          <div class="service-grid">
+              <div class="service-card">
+                  <h3>Web Design</h3>
+                  <p>Creating beautiful and functional websites</p>
+              </div>
+              <div class="service-card">
+                  <h3>UX/UI Design</h3>
+                  <p>Crafting intuitive user experiences</p>
+              </div>
+              <div class="service-card">
+                  <h3>Development</h3>
+                  <p>Building robust web applications</p>
+              </div>
+          </div>
+      </section>
+
+      <section id="contact" class="content-section">
+          <h2>Contact Us</h2>
+          <form>
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email" required>
+              <textarea placeholder="Your Message" required></textarea>
+              <button type="submit">Send Message</button>
+          </form>
+      </section>
+
+
+    <section id="home" class="hero">
+        <h1>나만의 단어장에 오신 것을 환영합니다</h1>
+        <p>효과적인 어휘 학습을 시작하세요</p>
+        <a href="#add-word" class="cta-button">단어 추가하기</a>
+    </section>
+
+    <section id="add-word" class="content-section">
+        <h2>단어 추가하기</h2>
+        <form id="addWordForm" class="add-word-form">
+            <div class="form-group">
+                <label for="word">단어</label>
+                <input type="text" id="word" name="word" required>
+            </div>
+            <div class="form-group">
+                <label for="pronunciation">읽기 방식</label>
+                <input type="text" id="pronunciation" name="pronunciation" required>
+            </div>
+            <div id="meaningsContainer">
+                <div class="meaning-group">
+                    <div class="form-group">
+                        <label for="partOfSpeech1">품사</label>
+                        <input type="text" id="partOfSpeech1" name="partOfSpeech1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="meaning1">뜻</label>
+                        <input type="text" id="meaning1" name="meaning1" required>
+                    </div>
+                    <div class="examples-container">
+                        <div class="example-group">
+                            <div class="form-group">
+                                <label for="example1">예문</label>
+                                <input type="text" id="example1" name="example1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="translation1">해석</label>
+                                <input type="text" id="translation1" name="translation1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-example-btn">예문 추가</button>
+                </div>
+            </div>
+            <button type="button" id="addMeaningBtn" class="add-meaning-btn">뜻 추가</button>
+            <button type="button" id="addWordBtn">단어 저장</button>
+        </form>
+    </section>
+
+    <section id="word-list" class="content-section">
+        <h2>단어 목록</h2>
+        <div id="wordListContainer" class="word-list">
+            <!-- 단어 목록이 여기에 동적으로 추가될 것입니다 -->
+        </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/addWord.js"></script>
+
+</body>
+</html>

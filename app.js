@@ -2,11 +2,14 @@ import dotenv from "dotenv";
 import express from "express";
 import mainRouter from "./routes/main.js";
 import wordRouter from "./routes/word.js";
+import connectDB from "./config/db.js";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", "./views");

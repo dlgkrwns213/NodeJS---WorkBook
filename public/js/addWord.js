@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
   addWordBtn.addEventListener('click', function() {
       const wordData = getFormData();
       if (validateWordData(wordData)) {
-        addWordToList(wordData);
+        document.getElementById('addWordForm').submit();
+        // addWordToList(wordData);
         resetForm();
       } else {
         alert('모든 필드를 채워주세요.');

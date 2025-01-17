@@ -68,44 +68,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
   addWordBtn.addEventListener('click', function() {
       const wordData = getFormData();
-      console.log('?', wordData);
       if (validateWordData(wordData)) {
-        console.log(wordData);
         addWordToList(wordData);
-        //   resetForm();
+        resetForm();
       } else {
-          alert('모든 필드를 채워주세요.');
+        alert('모든 필드를 채워주세요.');
       }
   });
 
   function getFormData() {
-      const word = document.getElementById('word').value;
-      const pronunciation = document.getElementById('pronunciation').value;
-      const meanings = [];
+    const word = document.getElementById('word')?.value || '';
+    const pronunciation = document.getElementById('pronunciation')?.value || '';
+    const meanings = [];
 
-      document.querySelectorAll('.meaning-group').forEach((meaningGroup, index) => {
-          const partOfSpeech = meaningGroup.querySelector(`#partOfSpeech${index + 1}`).value;
-          const meaning = meaningGroup.querySelector(`#meaning${index + 1}`).value;
-          const examples = [];
+    document.querySelectorAll('.meaning-group').forEach((meaningGroup, index) => {
+        const partOfSpeechInput = meaningGroup.querySelector(`#partOfSpeech${index + 1}`);
+        const meaningInput = meaningGroup.querySelector(`#meaning${index + 1}`);
 
-          meaningGroup.querySelectorAll('.example-group').forEach((exampleGroup, exampleIndex) => {
-              const example = exampleGroup.querySelector(`#example${index + 1}_${exampleIndex + 1}`).value;
-              const translation = exampleGroup.querySelector(`#translation${index + 1}_${exampleIndex + 1}`).value;
-              if (example && translation) {
-                  examples.push({ example, translation });
-              }
-          });
+        const partOfSpeech = partOfSpeechInput?.value || '';
+        const meaning = meaningInput?.value || '';
+        const examples = [];
 
-          if (partOfSpeech && meaning) {
-              meanings.push({ partOfSpeech, meaning, examples });
-          }
-      });
+        meaningGroup.querySelectorAll('.example-group').forEach((exampleGroup, exampleIndex) => {
+            const exampleInput = exampleGroup.querySelector(`#example${index + 1}_${exampleIndex + 1}`);
+            const translationInput = exampleGroup.querySelector(`#translation${index + 1}_${exampleIndex + 1}`);
 
-      return { word, pronunciation, meanings };
-  }
+            const example = exampleInput?.value || '';
+            const translation = translationInput?.value || '';
+
+            if (example && translation) {
+                examples.push({ example, translation });
+            }
+        });
+
+        if (partOfSpeech && meaning) {
+            meanings.push({ partOfSpeech, meaning, examples });
+        }
+    });
+
+    return { word, pronunciation, meanings };
+}
+
 
   function validateWordData(wordData) {
-    console.log(1);
     return wordData.word && wordData.pronunciation && wordData.meanings.length > 0;
   }
 

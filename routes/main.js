@@ -21,6 +21,8 @@ router.get("/tmp", (req, res) => {
 router.get("/totalWordsList", expressAsyncHandler( async (req, res) => {
   const totalWords = await Word.find();
 
+  
+
   res.json(totalWords);
 }));
 

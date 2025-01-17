@@ -68,9 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   addWordBtn.addEventListener('click', function() {
       const wordData = getFormData();
+      console.log('?', wordData);
       if (validateWordData(wordData)) {
-          addWordToList(wordData);
-          resetForm();
+        console.log(wordData);
+        addWordToList(wordData);
+        //   resetForm();
       } else {
           alert('모든 필드를 채워주세요.');
       }
@@ -103,7 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validateWordData(wordData) {
-      return wordData.word && wordData.pronunciation && wordData.meanings.length > 0;
+    console.log(1);
+    return wordData.word && wordData.pronunciation && wordData.meanings.length > 0;
   }
 
   function addWordToList(wordData) {

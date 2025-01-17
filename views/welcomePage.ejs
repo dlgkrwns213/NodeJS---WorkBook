@@ -70,7 +70,7 @@
 
     <section id="add-word" class="content-section">
         <h2>단어 추가하기</h2>
-        <form id="addWordForm" class="add-word-form">
+        <form id="addWordForm" class="add-word-form" action="/word/save" method="POST">
             <div class="form-group">
                 <label for="word">단어</label>
                 <input type="text" id="word" name="word" required>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <button type="button" id="addMeaningBtn" class="add-meaning-btn">뜻 추가</button>
-            <button type="button" id="addWordBtn">단어 저장</button>
+            <button type="submit" id="addWordBtn" >단어 저장</button>
         </form>
     </section>
 

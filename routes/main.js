@@ -8,11 +8,11 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("welcomePage-nologin.ejs");
+  res.render("tmp/tmp", {layout: "../views/layouts/welcomePage-nologin.ejs"});
 })
 
 router.get("/tmp", (req, res) => {
-  res.render("welcomePage.ejs");
+  res.render("words/saveWord", {layout: "../views/layouts/welcomePage.ejs"});
 })
 
 

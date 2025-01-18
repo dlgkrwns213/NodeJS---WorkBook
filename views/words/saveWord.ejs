@@ -1,0 +1,46 @@
+<section id="home" class="hero">
+  <h1>나만의 단어장에 오신 것을 환영합니다</h1>
+  <p>효과적인 어휘 학습을 시작하세요</p>
+  <a href="#add-word" class="cta-button">단어 추가하기</a>
+</section>
+
+<section id="add-word" class="content-section">
+  <h2>단어 추가하기</h2>
+  <form id="addWordForm" class="add-word-form" action="/word/save" method="POST">
+      <div class="form-group">
+          <label for="word">단어</label>
+          <input type="text" id="word" name="word" required>
+      </div>
+      <div class="form-group">
+          <label for="pronunciation">읽기 방식</label>
+          <input type="text" id="pronunciation" name="pronunciation" required>
+      </div>
+      <div id="meaningsContainer">
+          <div class="meaning-group">
+              <div class="form-group">
+                  <label for="partOfSpeech1">품사</label>
+                  <input type="text" id="partOfSpeech1" name="partOfSpeech1" required>
+              </div>
+              <div class="form-group">
+                  <label for="meaning1">뜻</label>
+                  <input type="text" id="meaning1" name="meaning1" required>
+              </div>
+              <div class="examples-container">
+                  <div class="example-group">
+                      <div class="form-group">
+                          <label for="example1_1">예문</label>
+                          <input type="text" id="example1_1" name="example1_1" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="translation1_1">해석</label>
+                          <input type="text" id="translation1_1" name="translation1_1" required>
+                      </div>
+                  </div>
+              </div>
+              <button type="button" class="add-example-btn">예문 추가</button>
+          </div>
+      </div>
+      <button type="button" id="addMeaningBtn" class="add-meaning-btn">뜻 추가</button>
+      <button type="submit" id="addWordBtn" >단어 저장</button>
+  </form>
+</section>

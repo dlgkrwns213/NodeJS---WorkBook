@@ -3,6 +3,7 @@ import express from "express";
 import mainRouter from "./routes/main.js";
 import wordRouter from "./routes/word.js";
 import connectDB from "./config/db.js";
+import expressEjsLayouts from "express-ejs-layouts";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const port = process.env.PORT || 3000;
 
 connectDB();
 
+app.use(expressEjsLayouts);
 app.set("view engine", "ejs");
 app.set("views", "./views");
 

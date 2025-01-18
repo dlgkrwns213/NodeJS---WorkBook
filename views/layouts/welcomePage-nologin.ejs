@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Webpage</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-header">
+        <h3>단어장</h3>
+        <div class="login-container">
+            <button class="login-button">로그인</button>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+  </header>
+
+    <main class="main">
+        <%- body %>
+    </main>
+    <main>
+      <section id="home" class="hero">
+          <h1>Welcome to Our Modern Website</h1>
+          <p>Experience the future of web design</p>
+          <a href="#contact" class="cta-button">Get Started</a>
+      </section>
+
+      <section id="about" class="content-section">
+          <h2>About Us</h2>
+          <p>We are a team of passionate designers and developers creating modern web experiences.</p>
+      </section>
+
+      <section id="services" class="content-section">
+          <h2>Our Services</h2>
+          <div class="service-grid">
+              <div class="service-card">
+                  <h3>Web Design</h3>
+                  <p>Creating beautiful and functional websites</p>
+              </div>
+              <div class="service-card">
+                  <h3>UX/UI Design</h3>
+                  <p>Crafting intuitive user experiences</p>
+              </div>
+              <div class="service-card">
+                  <h3>Development</h3>
+                  <p>Building robust web applications</p>
+              </div>
+          </div>
+      </section>
+
+      <section id="contact" class="content-section">
+          <h2>Contact Us</h2>
+          <form>
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email" required>
+              <textarea placeholder="Your Message" required></textarea>
+              <button type="submit">Send Message</button>
+          </form>
+      </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
+    </footer>
+</body>
+</html>

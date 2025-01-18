@@ -9,10 +9,7 @@
 <body>
   <header>
     <div class="top-header">
-        <h3>단어장</h3>
-        <div class="login-container">
-            <button class="login-button">로그인</button>
-        </div>
+        <h3><%= %>의 단어장</h3>
     </div>
     <nav class="main-nav">
         <ul>
@@ -25,18 +22,18 @@
   </header>
 
   <main>
-      <section id="home" class="hero">
+    <section id="home" class="hero">
           <h1>Welcome to Our Modern Website</h1>
           <p>Experience the future of web design</p>
           <a href="#contact" class="cta-button">Get Started</a>
-      </section>
+    </section>
 
-      <section id="about" class="content-section">
+    <section id="about" class="content-section">
           <h2>About Us</h2>
           <p>We are a team of passionate designers and developers creating modern web experiences.</p>
-      </section>
+    </section>
 
-      <section id="services" class="content-section">
+    <section id="services" class="content-section">
           <h2>Our Services</h2>
           <div class="service-grid">
               <div class="service-card">
@@ -52,9 +49,9 @@
                   <p>Building robust web applications</p>
               </div>
           </div>
-      </section>
+    </section>
 
-      <section id="contact" class="content-section">
+    <section id="contact" class="content-section">
           <h2>Contact Us</h2>
           <form>
               <input type="text" placeholder="Your Name" required>
@@ -62,11 +59,25 @@
               <textarea placeholder="Your Message" required></textarea>
               <button type="submit">Send Message</button>
           </form>
-      </section>
+    </section>
+
+    <main class="main">
+        <%- body %>
+    </main>
+
+    <section id="word-list" class="content-section">
+        <h2>단어 목록</h2>
+        <div id="wordListContainer" class="word-list">
+            <!-- 단어 목록이 여기에 동적으로 추가될 것입니다 -->
+        </div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
   </footer>
+
+  <script src="/js/addWord.js"></script>
+
 </body>
 </html>

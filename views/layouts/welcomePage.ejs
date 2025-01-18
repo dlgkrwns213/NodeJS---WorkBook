@@ -7,37 +7,29 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <div class="top-header">
-        <h3><%= %>의 단어장</h3>
-    </div>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="top-header">
+            <h3>단어장</h3>
+            <div class="login-container">
+                <button class="login-button">로그인</button>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="main">
         <%- body %>
     </main>
 
-    <section id="word-list" class="content-section">
-        <h2>단어 목록</h2>
-        <div id="wordListContainer" class="word-list">
-            <!-- 단어 목록이 여기에 동적으로 추가될 것입니다 -->
-        </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
-  </footer>
-
-  <script src="/js/addWord.js"></script>
-
+    <footer>
+        <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<section>
+  <ul class="admin-words">
+    <% data.forEach(word => { %>
+      <li>
+        <a href="/admin/show/<%= word._id %>">
+          <%= word.word %>
+        </a>
+
+        <div class="admin-word-controls">
+          <a href="/admin/edit/<%= word._id %>" class="btn">편집</a>
+          <form action="">
+            <input type="submit" value="삭제" class="btn-delete btn">
+          </form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</section>

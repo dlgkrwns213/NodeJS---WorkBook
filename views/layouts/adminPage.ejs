@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Webpage</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="top-header">
+        <h3><%= %>의 단어장</h3>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    </header>
+
+  <main>
+    <section id="home" class="hero">
+        <h1>나만의 단어장에 오신 것을 환영합니다</h1>
+        <p>효과적인 어휘 학습을 시작하세요</p>
+        <a href="/admin/add" class="cta-button">단어 추가하기</a>
+        <a href="/admin/show" class="cta-button">단어 확인하기</a>
+
+    </section>
+
+        <%- body %>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/addWord.js"></script>
+
+</body>
+</html>

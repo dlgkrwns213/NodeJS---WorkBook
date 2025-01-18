@@ -8,13 +8,8 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("mainPage", {layout: "../views/layouts/welcomePage-nologin.ejs"});
+  res.render("mainPage", {layout: "../views/layouts/welcomePage.ejs"});
 })
-
-router.get("/tmp", (req, res) => {
-  res.render("words/saveWord", {layout: "../views/layouts/welcomePage.ejs"});
-})
-
 
 // Word Page
 // Get /totalWordList

@@ -4,8 +4,17 @@ import expressAsyncHandler from "express-async-handler";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.render("admin/default", {layout: "../views/layouts/adminPage.ejs"});
+})
+
+router.get("/add", (req, res) => {
+  res.render("admin/saveWord", {layout: "../views/layouts/adminPage.ejs"});
+})
+
+
 router.post(
-  "/word/save",
+  "/save",
   expressAsyncHandler(async (req, res) => {
     try {
       const { word, pronunciation, ...data } = req.body;
@@ -53,6 +62,46 @@ router.post(
           error: error.message,
         });
       }
+    }
+  })
+);
+
+router.get(
+  "/show",
+  expressAsyncHandler( async (req, res) => {
+    try {
+      const wordTotal = await Word.find();
+      res.render("admin/showTotalWord", {data: wordTotal, layout: "../views/layouts/adminPage.ejs"})
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("server error");
+    }
+  })
+);
+
+router.get(
+  "/edit/:id",
+  expressAsyncHandler( async (req, res) => {
+    const locals = {
+      title: "word 편집"
+    };
+    const data = await Word.findOne({_id: req.params.id});
+    res.render("admin/editWord", {locals, data, layout: '../views/layouts/adminPage.ejs'});
+  })
+)
+
+router.put(
+  "/edit/:id",
+  expressAsyncHandler( async (req, res) => {
+    try {
+      await Word.findByIdAndUpdate(req.params.id, {
+        word: req.body.word,
+        pronunciation: req.body.pronunciation,
+      });
+      req.redirect("/show")
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("server error");
     }
   })
 );

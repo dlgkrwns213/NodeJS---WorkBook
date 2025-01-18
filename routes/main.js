@@ -8,7 +8,7 @@ dotenv.config();
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("tmp/tmp", {layout: "../views/layouts/welcomePage-nologin.ejs"});
+  res.render("mainPage", {layout: "../views/layouts/welcomePage-nologin.ejs"});
 })
 
 router.get("/tmp", (req, res) => {

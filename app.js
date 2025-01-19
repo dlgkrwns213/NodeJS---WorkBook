@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mainRouter from "./routes/main.js";
-import wordRouter from "./routes/admin.js";
+import adminRoutes from "./routes/admin.js";
 import connectDB from "./config/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import methodOverride from "method-override";
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.use("/", mainRouter);
-app.use("/admin", wordRouter);
+app.use("/admin", adminRoutes);
 
 app.listen(port, () => {
   console.log(`Application listening on port ${port}`)

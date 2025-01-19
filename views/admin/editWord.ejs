@@ -2,9 +2,6 @@
   <a href="/admin/show">&larr; 뒤로</a>
   <div class="word-title">
     <h2><%= locals.title %></h2>
-    <form action="/admin/delete/<%= data._id %>?_method=DELETE" method="POST">
-      <input type="submit" value="삭제" class="btn btn-delete">
-    </form>
   </div>
 
   <form action="/admin/edit/<%= data._id %>?_method=PUT" method="POST">
@@ -20,5 +17,10 @@
     </textarea>
 
     <input type="submit" value="수정" class="btn">
+  </form>
+
+  <p>---</p>
+  <form action="/admin/delete/<%= data._id %>?_method=DELETE" method="POST">
+    <input type="submit" value="삭제" class="btn btn-delete">
   </form>
 </section>

@@ -53,7 +53,7 @@ router.post(
       //   data: savedWord,
       // });
 
-      res.redirect("/tmp");
+      res.redirect("/admin/show");
     } catch (error) {
       console.error("Error saving word:", error.message);
       if (!res.headersSent) {
@@ -105,5 +105,18 @@ router.put(
     }
   })
 );
+
+router.delete(
+  "/delete/:id",
+  expressAsyncHandler( async (req, res) => {
+    try {
+      await Word.deleteOne({ _id: req.params.id });
+      res.redirect("/admin/show");
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("server error");
+    }
+  })
+)
 
 export default router;

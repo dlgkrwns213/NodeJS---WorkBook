@@ -4,6 +4,7 @@ import mainRouter from "./routes/main.js";
 import wordRouter from "./routes/admin.js";
 import connectDB from "./config/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
+import methodOverride from "method-override";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ app.use(express.static("public"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride("_method"));
 
 app.use("/", mainRouter);
 app.use("/admin", wordRouter);

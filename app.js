@@ -4,7 +4,9 @@ import mainRouter from "./routes/main.js";
 import adminRoutes from "./routes/admin.js";
 import connectDB from "./config/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
+import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
+
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser());
 app.use(methodOverride("_method"));
 
 app.use("/", mainRouter);

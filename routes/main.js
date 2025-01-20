@@ -4,10 +4,12 @@ import expressAsyncHandler from "express-async-handler";
 import Word from "../models/Word.js";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
 const router = express.Router();
+const jwtSecret = process.env.JWT_SECRET;
 
 router.get("/", (req, res) => {
   res.render("mainPage", {layout: "../views/layouts/welcomePage.ejs"});
@@ -75,8 +77,18 @@ router.post(
     if (!isValidPassword)
       return res.status(401).json({ Message: "올바르지 않은 비밀번호입니다" });
 
+    const token = jwt.sign({ id: user._id }, jwtSecret);
+    res.cookie("token", token, {httpOnly: true});
+
     res.redirect("/admin");
   })
 );
+
+// logout
+// GET /logout
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/")
+})
 
 export default router;

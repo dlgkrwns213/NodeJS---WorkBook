@@ -4,6 +4,10 @@ import userRoutes from "./admin/user.js";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.render("admin/default", {layout: "../views/layouts/adminPage.ejs"});
+})
+
 router.use('/word', wordRoutes);
 router.use('/user', userRoutes);
 

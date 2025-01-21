@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Webpage</title>
+    <title><%= locals.title %></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header>
     <div class="top-header">
-      <h3><%= %>의 단어장</h3>
+      <h3><%= locals.name %>단어장</h3>
       <div class="login-container">
         <form action="/user/logout" method="GET">
           <button class="login-button" onclick="location.href='/logout'">로그아웃</button>

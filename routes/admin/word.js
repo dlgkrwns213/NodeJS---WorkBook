@@ -11,7 +11,7 @@ const jwtAdminSecret = process.env.JWT_ADMIN_SECRET || 'ADMIN_SECRET'
 
 // Check Admin Login
 const CheckAdminLogin = (req, res, next) => {
-  const adminToken = req.cookies.token;
+  const adminToken = req.cookies.adminToken;
   if (!adminToken)
     res.redirect("/login");
   else {
@@ -20,8 +20,8 @@ const CheckAdminLogin = (req, res, next) => {
       req.adminId = decode.adminId;
       next();
     } catch (error) {
-      console.log(error);
-      res.redirect("/admin");
+      // console.log(error);
+      res.redirect("/");
     }
   }
 };

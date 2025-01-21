@@ -11,7 +11,9 @@
     <div class="top-header">
       <h3><%= %>관리자 페이지</h3>
       <div class="login-container">
-        <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
+        <form action="/admin/logout" method="GET">
+          <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
+        </form>
       </div>
     </div>
     <nav class="main-nav">

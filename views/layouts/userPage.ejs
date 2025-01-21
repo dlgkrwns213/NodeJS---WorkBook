@@ -11,7 +11,9 @@
     <div class="top-header">
       <h3><%= %>의 단어장</h3>
       <div class="login-container">
-        <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
+        <form action="/user/logout" method="GET">
+          <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
+        </form>
       </div>
     </div>
     <nav class="main-nav">

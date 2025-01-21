@@ -1,0 +1,11 @@
+<section>
+  <ul class="admin-words">
+    <% data.forEach(word => { %>
+      <li>
+        <a href="/user/word/show/<%= word._id %>">
+          <%= word.word %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</section>

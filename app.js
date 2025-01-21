@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mainRouter from "./routes/main.js";
 import adminRoutes from "./routes/admin.js";
+import userRoutes from "./routes/user.js";
 import connectDB from "./config/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
 import cookieParser from "cookie-parser";
@@ -29,6 +30,7 @@ app.use(methodOverride("_method"));
 
 app.use("/", mainRouter);
 app.use("/admin", adminRoutes);
+app.use("/user", userRoutes);
 
 app.listen(port, () => {
   console.log(`Application listening on port ${port}`)

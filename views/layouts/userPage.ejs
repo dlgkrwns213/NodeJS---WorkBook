@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="top-header">
-      <h3><%= %>관리자 페이지</h3>
+      <h3><%= %>의 단어장</h3>
       <div class="login-container">
         <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
       </div>
@@ -28,9 +28,7 @@
     <section id="home" class="hero">
         <h1>나만의 단어장에 오신 것을 환영합니다</h1>
         <p>효과적인 어휘 학습을 시작하세요</p>
-        <a href="/admin/word/add" class="cta-button">단어 추가하기</a>
-        <a href="/admin/word/show" class="cta-button">단어 확인하기</a>
-
+        <a href="/user/word/show" class="cta-button">단어 확인하기</a>
     </section>
 
         <%- body %>

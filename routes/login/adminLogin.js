@@ -62,7 +62,7 @@ router.post(
 );
 
 // logout
-// GET /logout
+// GET admin/logout
 router.get("/logout", (req, res) => {
   res.clearCookie("adminToken");
   res.redirect("/");

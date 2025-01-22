@@ -6,7 +6,15 @@ dotenv.config();
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const isLogin = (req, res, next) => {
+  if (req.cookies.userToken)
+    res.redirect("/user");
+  else if (req.cookies.adminToken)
+    res.redirect("/admin");
+  next();
+}
+
+router.get("/", isLogin, (req, res) => {
   res.render("mainPage", {layout: "../views/layouts/welcomePage.ejs"});
 });
 

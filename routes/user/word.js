@@ -17,9 +17,7 @@ const CheckUserLogin = (req, res, next) => {
   else {
     try {
       const decode = jwt.verify(userToken, jwtUserSecret);
-      console.log(decode)
-      req.userID = decode.userID;
-      console.log(req);
+      req.userID = decode.id;
       next();
     } catch (error) {
       console.log(error);
@@ -29,9 +27,8 @@ const CheckUserLogin = (req, res, next) => {
 }
 
 router.get("/", CheckUserLogin, (req, res) => {
-  console.log('?')
   const locals = {
-
+    title: "단어장",
   }
   res.render("user/default", {locals, layout: "../views/layouts/userPage.ejs"});
 });
@@ -42,7 +39,7 @@ router.get(
   expressAsyncHandler( async (req, res) => {
     try {
       const locals = {
-
+        title: "전체 단어장",
       }
       const wordTotal = await Word.find();
       res.render("user/showTotalWord", {locals, data: wordTotal, layout: "../views/layouts/userPage.ejs"})
@@ -57,11 +54,12 @@ router.get(
   "/show/:id",
   CheckUserLogin, 
   expressAsyncHandler( async (req, res) => {
-    const locals = {
-
-    };
     const data = await Word.findOne({_id: req.params.id});
-    res.render("user/showWord", {locals, data, layout: "../views/layouts/adminPage.ejs"});
+
+    const locals = {
+      title: data,
+    };
+    res.render("user/showWord", {locals, data, layout: "../views/layouts/userPage.ejs"});
   })
 )
 
@@ -76,7 +74,6 @@ router.put(
       });
       req.redirect("/user/word/show")
     } catch (error) {
-      console.log(error);
       res.status(500).send("server error");
     }
   })

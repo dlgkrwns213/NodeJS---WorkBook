@@ -17,7 +17,7 @@ const CheckAdminLogin = (req, res, next) => {
   else {
     try {
       const decode = jwt.verify(adminToken, jwtAdminSecret);
-      req.adminId = decode.adminId;
+      req.adminId = decode.id;
       next();
     } catch (error) {
       // console.log(error);

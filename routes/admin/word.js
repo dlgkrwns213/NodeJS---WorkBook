@@ -118,19 +118,33 @@ router.get(
 router.put(
   "/edit/:id",
   CheckAdminLogin,
-  expressAsyncHandler( async (req, res) => {
+  expressAsyncHandler(async (req, res) => {
     try {
-      await Word.findByIdAndUpdate(req.params.id, {
-        word: req.body.word,
-        pronunciation: req.body.pronunciation,
-      });
-      req.redirect("/admin/word/show")
+      const { word, pronunciation, meanings } = req.body;
+      
+      // 'meanings' 배열이 있는 경우 각 뜻을 업데이트
+      const updatedData = {
+        word,
+        pronunciation,
+        meanings: meanings.map((meaning) => ({
+          partOfSpeech: meaning.partOfSpeech,
+          meaning: meaning.meaning,
+          examples: meaning.examples.map((example) => ({
+            example: example.example,
+            translation: example.translation,
+          })),
+        })),
+      };
+
+      await Word.findByIdAndUpdate(req.params.id, updatedData);
+      res.redirect("/admin/word/show");
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");
     }
   })
 );
+
 
 router.delete(
   "/delete/:id",

@@ -57,26 +57,10 @@ router.get(
     const data = await Word.findOne({_id: req.params.id});
 
     const locals = {
-      title: data,
+      title: data.word,
     };
     res.render("user/showWord", {locals, data, layout: "../views/layouts/userPage.ejs"});
   })
 )
-
-router.put(
-  "/show/:id",
-  CheckUserLogin, 
-  expressAsyncHandler( async (req, res) => {
-    try {
-      await Word.findByIdAndUpdate(req.params.id, {
-        word: req.body.word,
-        pronunciation: req.body.pronunciation,
-      });
-      req.redirect("/user/word/show")
-    } catch (error) {
-      res.status(500).send("server error");
-    }
-  })
-);
 
 export default router;

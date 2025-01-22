@@ -5,16 +5,33 @@
   </div>
 
   <form action="/admin/word/edit/<%= data._id %>?_method=PUT" method="POST">
-    <label for="title"><b>단어</b></label>
+    <label for="word"><b>단어</b></label>
     <input type="text" name="word" id="word" value="<%= data.word %>">
     
-    <label for="title"><b>발음</b></label>
-    <input type="text" name="pronunciation" id="pronunciation" value="<%= data.pronunciation %>">
+    <label for="pronunciation"><b>발음</b></label>
+    <input type="text" name="pronunciation" id="pronunciation" value="<%= data.pronunciation || '' %>">
 
-    <label for="body"><b>내용</b></label>
-    <textarea name="body" id="body" cols="50" rows="10">
-      <%= data.meanings %>
-    </textarea>
+    <label for="meanings"><b>뜻</b></label>
+    <% data.meanings.forEach((meaning, index) => { %>
+      <div class="meaning">
+        <label for="partOfSpeech-<%= index %>">품사</label>
+        <input type="text" name="meanings[<%= index %>][partOfSpeech]" id="partOfSpeech-<%= index %>" value="<%= meaning.partOfSpeech %>">
+
+        <label for="meaning-<%= index %>">뜻</label>
+        <input type="text" name="meanings[<%= index %>][meaning]" id="meaning-<%= index %>" value="<%= meaning.meaning %>">
+
+        <label for="examples-<%= index %>">예문</label>
+        <% meaning.examples.forEach((example, exIndex) => { %>
+          <div class="example">
+            <label for="example-<%= index %>-<%= exIndex %>">문장</label>
+            <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][example]" value="<%= example.example %>">
+
+            <label for="translation-<%= index %>-<%= exIndex %>">해석</label>
+            <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][translation]" value="<%= example.translation %>">
+          </div>
+        <% }) %>
+      </div>
+    <% }) %>
 
     <input type="submit" value="수정" class="btn">
   </form>

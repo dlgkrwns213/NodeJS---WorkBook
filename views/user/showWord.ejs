@@ -5,8 +5,26 @@
   </div>
 
   <section>
-    <p><%= data.word %></p>
-    <p><%= data.pronunciation %></p>
-    <p><%= data.meanings %></p>
+    <p>단어: <%= data.word %></p>
+    <p>발음: <%= data.pronunciation || '정보 없음' %></p>
+
+    <ul>
+      <% data.meanings.forEach((meaning) => { %>
+        <h3>뜻</h3>
+        <li>
+          <p>품사: <%= meaning.partOfSpeech %></p>
+          <p>뜻: <%= meaning.meaning %></p>
+          <h4>예문</h4>
+          <ul>
+            <% meaning.examples.forEach((example) => { %>
+              <li>
+                <p>문장: <%= example.example %></p>
+                <p>해석: <%= example.translation %></p>
+              </li>
+            <% }) %>
+          </ul>
+        </li>
+      <% }) %>
+    </ul>
   </section>
 </section>

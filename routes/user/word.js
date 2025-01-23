@@ -61,6 +61,6 @@ router.get(
     };
     res.render("user/showWord", {locals, data, layout: "../views/layouts/userPage.ejs"});
   })
-)
+);
 
 export default router;

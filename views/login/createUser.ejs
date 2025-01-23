@@ -1,13 +1,21 @@
-<h2>단어장 회원가입</h2>
-<form action="/user/register" method="POST">
-  <label for="userID"><b>아이디</b></label>
-  <input type="text" name="userID" id="userID">
+<div class="form-container">
+  <h2 class="form-title">단어장 회원가입</h2>
+  <form action="/user/register" method="POST" class="form">
+    <div class="form-group">
+      <label for="userID" class="form-label"><b>아이디</b></label>
+      <input type="text" name="userID" id="userID" class="form-input">
+    </div>
 
-  <label for="username">이름</label>
-  <input type="text" name="username" id="username">
+    <div class="form-group">
+      <label for="username" class="form-label">이름</label>
+      <input type="text" name="username" id="username" class="form-input">
+    </div>
 
-  <label for="password">비밀번호</label>
-  <input type="password" name="password" id="password">
+    <div class="form-group">
+      <label for="password" class="form-label">비밀번호</label>
+      <input type="password" name="password" id="password" class="form-input">
+    </div>
 
-  <input type="submit" value="회원가입" class="btn">
-</form>
+    <input type="submit" value="회원가입" class="btn btn-submit">
+  </form>
+</div>

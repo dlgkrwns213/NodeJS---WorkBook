@@ -1,13 +1,21 @@
-<h2>관리자 회원가입</h2>
-<form action="/admin/register" method="POST">
-  <label for="adminID"><b>아이디</b></label>
-  <input type="text" name="adminID" id="adminID">
+<div class="form-container">
+  <h2 class="form-title">관리자 회원가입</h2>
+  <form action="/admin/register" method="POST" class="form">
+    <div class="form-group">
+      <label for="adminID" class="form-label"><b>아이디</b></label>
+      <input type="text" name="adminID" id="adminID" class="form-input">
+    </div>
 
-  <label for="adminname">이름</label>
-  <input type="text" name="adminname" id="adminname">
+    <div class="form-group">
+      <label for="adminname" class="form-label">이름</label>
+      <input type="text" name="adminname" id="adminname" class="form-input">
+    </div>
 
-  <label for="password">비밀번호</label>
-  <input type="password" name="password" id="password">
+    <div class="form-group">
+      <label for="password" class="form-label">비밀번호</label>
+      <input type="password" name="password" id="password" class="form-input">
+    </div>
 
-  <input type="submit" value="회원가입" class="btn">
-</form>
+    <input type="submit" value="회원가입" class="btn btn-submit">
+  </form>
+</div>

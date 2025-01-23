@@ -1,20 +1,28 @@
-<h2>단어장 로그인</h2>
-<form id="loginForm" method="POST">
-  <label for="ID"><b>아이디</b></label>
-  <input type="text" name="userID" id="userID" required>
+<div class="form-container">
+  <h2 class="form-title">단어장 로그인</h2>
+  <form id="loginForm" method="POST" class="form">
+    <div class="form-group">
+      <label for="ID" class="form-label"><b>아이디</b></label>
+      <input type="text" name="ID" id="ID" class="form-input" required>
+    </div>
 
-  <label for="password">비밀번호</label>
-  <input type="password" name="password" id="password" required>
+    <div class="form-group">
+      <label for="password" class="form-label">비밀번호</label>
+      <input type="password" name="password" id="password" class="form-input" required>
+    </div>
 
-  <label for="isAdmin">관리자 계정</label>
-  <input type="checkbox" name="isAdmin" id="isAdmin">
+    <div class="form-group form-checkbox">
+      <label for="isAdmin" class="form-label">관리자 계정</label>
+      <input type="checkbox" name="isAdmin" id="isAdmin" class="form-input-checkbox">
+    </div>
 
-  <input type="submit" value="로그인" class="btn">
-</form>
+    <input type="submit" value="로그인" class="btn btn-submit">
+  </form>
 
-<script>
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
-    const isAdminChecked = document.getElementById('isAdmin').checked;
-    this.action = isAdminChecked ? '/admin/login' : '/user/login';
-  });
-</script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      const isAdminChecked = document.getElementById('isAdmin').checked;
+      this.action = isAdminChecked ? '/admin/login' : '/user/login';
+    });
+  </script>
+</div>

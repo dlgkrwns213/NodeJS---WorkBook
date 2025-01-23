@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Webpage</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login.css">
+    
 </head>
 <body>
     <header>
-        <div class="top-header">
-            <h3>단어장</h3>
-            <div class="login-container">
-                <button class="login-button" onclick="location.href='/login'">로그인</button>
+        <div class="container">
+            <div class="top-header">
+                <h3><a href="/" style="color: inherit; text-decoration: none;">단어장</a></h3>
+                <div class="login-cotainer">
+                    <form action="/login" method="GET">
+                        <button class="nav-button logout-btn">로그인</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>  
     </header>
 
     <main class="main">

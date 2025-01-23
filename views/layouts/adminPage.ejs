@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Webpage</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
   <header>
-    <div class="top-header">
-      <h3><%= %>관리자 페이지</h3>
-      <div class="login-container">
-        <form action="/admin/logout" method="GET">
-          <button class="login-button" onclick="location.href='/logout'">로그아웃</button>
-        </form>
+    <div class="container">
+      <div class="top-header">
+        <h3><a href="/admin" style="color: inherit; text-decoration: none;">관리자 페이지</a></h3>
+        <div>
+          <form action="/admin/logout" method="GET">
+            <button class="nav-button logout-btn" onclick="location.href='/logout'">로그아웃</button>
+          </form>
+        </div>
       </div>
+      <nav class="main-nav">
+          <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#contact">Contact</a></li>
+          </ul>
+      </nav>
     </div>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
     </header>
 
   <main>

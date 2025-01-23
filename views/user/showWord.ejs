@@ -1,25 +1,25 @@
-<section>
-  <a href="/user/word/show">&larr; 뒤로</a>
+<section class="word-detail">
+  <a href="/user/word/show" class="back-link">&larr; 뒤로</a>
   <div class="word-title">
     <h2><%= locals.title %></h2>
   </div>
 
-  <section>
-    <p>단어: <%= data.word %></p>
-    <p>발음: <%= data.pronunciation || '정보 없음' %></p>
+  <section class="word-content">
+    <!-- <p class="word-item"><strong>단어:</strong> <%= data.word %></p> -->
+    <p class="word-item"><strong>발음:</strong> <%= data.pronunciation || '정보 없음' %></p>
 
-    <ul>
+    <ul class="meanings-list">
       <% data.meanings.forEach((meaning) => { %>
-        <h3>뜻</h3>
-        <li>
-          <p>품사: <%= meaning.partOfSpeech %></p>
-          <p>뜻: <%= meaning.meaning %></p>
-          <h4>예문</h4>
-          <ul>
+        <li class="meaning-item">
+          <h3 class="meaning-title">뜻</h3>
+          <p class="word-item"><strong>품사:</strong> <%= meaning.partOfSpeech %></p>
+          <p class="word-item"><strong>뜻:</strong> <%= meaning.meaning %></p>
+          <h4 class="examples-title">예문</h4>
+          <ul class="examples-list">
             <% meaning.examples.forEach((example) => { %>
-              <li>
-                <p>문장: <%= example.example %></p>
-                <p>해석: <%= example.translation %></p>
+              <li class="example-item">
+                <p class="word-item"><strong>문장:</strong> <%= example.example %></p>
+                <p class="word-item"><strong>해석:</strong> <%= example.translation %></p>
               </li>
             <% }) %>
           </ul>
@@ -28,3 +28,4 @@
     </ul>
   </section>
 </section>
+

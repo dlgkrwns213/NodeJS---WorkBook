@@ -9,3 +9,14 @@
     <% }) %>
   </ul>
 </section>
+
+<script>
+  document.querySelectorAll('ul.admin-words li').forEach(li => {
+    li.addEventListener('click', function () {
+      const link = this.querySelector('a');
+      if (link) {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>

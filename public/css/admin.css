@@ -1,0 +1,32 @@
+/* Admin Styles */
+.admin-words {
+  list-style-type: none;
+}
+
+.admin-words li {
+  background: var(--card-background);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.admin-words li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.admin-words a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.admin-word-controls {
+  display: flex;
+  gap: 0.5rem;
+}

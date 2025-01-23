@@ -46,7 +46,7 @@ router.post(
   expressAsyncHandler ( async (req, res) => {
     const {ID, password} = req.body;
     
-    const admin = await Admin.findOne({ ID });
+    const admin = await Admin.findOne({ adminID: ID });
     if (!admin) 
       return res.status(401).json({ Message: "존재하지 않는 관리자 계정입니다" });
 

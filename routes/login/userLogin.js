@@ -46,7 +46,7 @@ router.post(
   expressAsyncHandler ( async (req, res) => {
     const {ID, password} = req.body;
     
-    const user = await User.findOne({ ID });
+    const user = await User.findOne({ userID: ID });
     if (!user) 
       return res.status(401).json({ Message: "존재하지 않는 사용자 계정입니다" });
 

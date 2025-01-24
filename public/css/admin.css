@@ -1,9 +1,17 @@
-/* Admin Styles */
-.admin-words {
+/* Word List Styles */
+.section-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.word-list {
   list-style-type: none;
 }
 
-.admin-words li {
+.word-list li {
   background: var(--card-background);
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -15,18 +23,133 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.admin-words li:hover {
+.word-list li:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.admin-words a {
+.word-list a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
 }
 
-.admin-word-controls {
+.word-item {
   display: flex;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.3s ease;
 }
+
+.word-item:hover {
+  background-color: #f8f9fa;
+}
+
+
+.word-link {
+  font-size: 18px;
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.word-link:hover {
+  text-decoration: underline;
+}
+
+.word-pronunciation {
+  font-size: 14px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.word-controls {
+  display: flex;
+  gap: 10px; /* Updated gap */
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease; /* Updated transition */
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-edit,
+.btn-delete {
+  background-color: #f0f0f0;
+  color: #333; /* Updated color */
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+  background-color: #e0e0e0;
+  color: #000; /* Updated color */
+}
+
+.btn-icon {
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn-icon i {
+  width: 18px;
+  height: 18px;
+}
+
+.delete-form {
+  padding: 0;
+  margin: 0;
+}
+
+.no-words-message {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .word-list-section {
+    padding: 20px;
+  }
+
+  .word-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .word-controls {
+    margin-top: 10px;
+  }
+}
+
+/* Scrollbar styles for webkit browsers */
+.word-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.word-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.word-list-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.word-list-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

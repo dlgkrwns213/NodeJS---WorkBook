@@ -22,6 +22,7 @@ router.get("/", isLogin, (req, res) => {
 // Get login
 router.get(
   "/login",
+  isLogin,
   expressAsyncHandler ( async (req, res) => {
     res.render("../views/login/login", {layout: "../views/layouts/welcomePage.ejs"});
   })

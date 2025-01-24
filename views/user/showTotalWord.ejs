@@ -1,17 +1,25 @@
 <section>
-  <ul class="admin-words">
-    <% data.forEach(word => { %>
-      <li>
-        <a href="/user/word/show/<%= word._id %>">
-          <%= word.word %>
-        </a>
-      </li>
-    <% }) %>
-  </ul>
+  <h2 class="section-title">단어 목록</h2>
+  <% if (data.length > 0) { %>
+    <ul class="word-list">
+      <% data.forEach(word => { %>
+        <li>
+          <a href="/user/word/show/<%= word._id %>">
+            <%= word.word %>
+          </a>
+          <% if (word.pronunciation) { %>
+            <span class="word-pronunciation">/<%= word.pronunciation %>/</span>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="no-words-message">등록된 단어가 없습니다.</p>
+  <% } %>
 </section>
 
 <script>
-  document.querySelectorAll('ul.admin-words li').forEach(li => {
+  document.querySelectorAll('ul.word-list li').forEach(li => {
     li.addEventListener('click', function () {
       const link = this.querySelector('a');
       if (link) {

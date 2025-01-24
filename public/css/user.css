@@ -1,4 +1,43 @@
-/* Existing styles... */
+/* Word List Styles */
+.section-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.word-list {
+  list-style-type: none;
+}
+
+.word-list li {
+  background: var(--card-background);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.word-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.word-list a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.user-word-controls {
+  display: flex;
+  gap: 0.5rem;
+}
 
 /* Word Detail Styles */
 .word-detail {
@@ -93,3 +132,24 @@
   }
 }
 
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007bff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.back-link:active {
+  background-color: #003f7f;
+  transform: scale(0.95);
+}

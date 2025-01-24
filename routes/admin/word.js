@@ -104,6 +104,19 @@ router.get(
 );
 
 router.get(
+  "/show/:id",
+  CheckAdminLogin, 
+  expressAsyncHandler( async (req, res) => {
+    const data = await Word.findOne({_id: req.params.id});
+
+    const locals = {
+      title: data.word,
+    };
+    res.render("admin/showWord", {locals, data, layout: "../views/layouts/adminPage.ejs"});
+  })
+);
+
+router.get(
   "/edit/:id",
   CheckAdminLogin,
   expressAsyncHandler( async (req, res) => {

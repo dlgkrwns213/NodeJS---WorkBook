@@ -35,7 +35,7 @@ const wordSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  meanings: [meaningSchema],
+
 });
 
 export default mongoose.model("Word", wordSchema);

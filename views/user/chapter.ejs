@@ -1,0 +1,19 @@
+<section>
+  <div class="chapter-container">
+    <h1>챕터 선택</h1>
+    <div class="chapter-grid">
+      <% for (let i = 1; i <= 30; i++) { %>
+        <button class="chapter-button" onclick="selectChapter(<%= i %>)">
+          Chapter <%= i %>
+        </button>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<script>
+  function selectChapter(chapterId) {
+    console.log(`Navigating to /user/chapter/${chapterId}`); // 디버깅을 위한 로그 추가
+    window.location.href = `/user/chapter/${chapterId}`;
+  }
+</script>

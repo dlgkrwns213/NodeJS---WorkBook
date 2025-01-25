@@ -6,6 +6,7 @@
     <title>Modern Webpage</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin.css">
+    
 </head>
 <body>
   <header>
@@ -20,33 +21,31 @@
       </div>
       <nav class="main-nav">
           <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/admin">Home</a></li>
+              <li><a href="/admin/word/add">About</a></li>
+              <li><a href="/admin/word/show">Services</a></li>
+              <li><a href="/admin/user">Contact</a></li>
           </ul>
       </nav>
     </div>
     </header>
 
   <main class="container">
-    <section id="home" class="hero">
-        <h1>나만의 단어장에 오신 것을 환영합니다</h1>
-        <p>효과적인 어휘 학습을 시작하세요</p>
-        <a href="/admin/word/add" class="cta-button">단어 추가하기</a>
-        <a href="/admin/word/show" class="cta-button">단어 확인하기</a>
-
+    <section class="hero">
+      <h1>나만의 단어장에 오신 것을 환영합니다</h1>
+      <p>효과적인 어휘 학습을 시작하세요</p>
+      <a href="/admin/word/add" class="cta-button">단어 추가하기</a>
+      <a href="/admin/word/show" class="cta-button">단어 편집하기</a>
     </section>
+
     <section class="section">
       <%- body %> 
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2024 Modern Webpage. All rights reserved.</p>
+    <p>&copy; 2025 나만의 단어장. All rights reserved.</p>
   </footer>
-
-  <script src="/js/addWord.js"></script>
 
 </body>
 </html>

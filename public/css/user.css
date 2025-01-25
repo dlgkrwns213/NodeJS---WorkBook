@@ -56,25 +56,3 @@
     font-size: 1.1rem;
   }
 }
-
-.back-link {
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  background-color: #007bff;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.back-link:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-.back-link:active {
-  background-color: #003f7f;
-  transform: scale(0.95);
-}

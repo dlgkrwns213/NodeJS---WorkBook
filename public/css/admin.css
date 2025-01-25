@@ -34,20 +34,6 @@
   font-weight: 500;
 }
 
-.word-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #e9ecef;
-  transition: background-color 0.3s ease;
-}
-
-.word-item:hover {
-  background-color: #f8f9fa;
-}
-
-
 .word-link {
   font-size: 18px;
   color: #007bff;

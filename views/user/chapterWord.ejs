@@ -1,0 +1,39 @@
+<section class="word-detail">
+  <a href="<%= wordIds.befWordId ? `/user/chapter/${chapterId}/${wordIds.befWordId}` : '#' %>" 
+    class="back-link" 
+    style="<%= wordIds.befWordId ? '' : 'visibility: hidden;' %>">&lt; 이전 단어</a>
+ 
+ <a href="<%= wordIds.nxtWordId ? `/user/chapter/${chapterId}/${wordIds.nxtWordId}` : '#' %>" 
+    class="front-link" 
+    style="<%= wordIds.nxtWordId ? '' : 'visibility: hidden;' %>">다음 단어 &gt;</a>
+ 
+
+  <div class="word-title">
+    <h2><%= data.word %></h2>
+  </div>
+
+  <section class="word-content">
+    <!-- <p class="word-item"><strong>단어:</strong> <%= data.word %></p> -->
+    <p class="word-item"><strong>발음:</strong> <%= data.pronunciation || '정보 없음' %></p>
+
+    <ul class="meanings-list">
+      <% data.meanings.forEach((meaning) => { %>
+        <li class="meaning-item">
+          <h3 class="meaning-title">뜻</h3>
+          <p class="word-item"><strong>품사:</strong> <%= meaning.partOfSpeech %></p>
+          <p class="word-item"><strong>뜻:</strong> <%= meaning.meaning %></p>
+          <h4 class="examples-title">예문</h4>
+          <ul class="examples-list">
+            <% meaning.examples.forEach((example) => { %>
+              <li class="example-item">
+                <p class="word-item"><strong>문장:</strong> <%= example.example %></p>
+                <p class="word-item"><strong>해석:</strong> <%= example.translation %></p>
+              </li>
+            <% }) %>
+          </ul>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+</section>
+

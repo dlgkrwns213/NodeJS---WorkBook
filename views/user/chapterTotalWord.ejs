@@ -1,0 +1,34 @@
+<section>
+  <h2 class="section-title">Chapter <%= id %> 단어</h2>
+  <% if (data.length > 0) { %>
+    <ul class="word-list">
+      <% data.forEach(word => { %>
+        <li>
+          <div>
+            <a href="/user/chapter/<%= id %>/<%= word._id %>">
+              <%= word.word %>
+            </a>
+            <% if (word.pronunciation) { %>
+              <span class="word-pronunciation" style="color: #AAA;">/<%= word.pronunciation %>/</span>
+            <% } %>
+            <!-- <span class="word-pronunciation">-chapter <%= word.chapter %></span> -->
+          </div>
+        </li>
+    <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="no-words-message">등록된 단어가 없습니다.</p>
+  <% } %>
+</section>
+
+<script>
+  document.querySelectorAll('ul.word-list li').forEach(li => {
+    li.addEventListener('click', function () {
+      const link = this.querySelector('a');
+      if (link) {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+

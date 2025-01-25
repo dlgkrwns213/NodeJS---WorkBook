@@ -301,23 +301,11 @@ footer {
 
 /* Word Detail Styles */
 .word-detail {
+  position: relative;
   background-color: var(--card-background);
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.back-link:hover {
-  color: var(--secondary-color);
 }
 
 .word-title {
@@ -374,7 +362,9 @@ footer {
   border-radius: 4px;
 }
 
+/* 화살표 처리 */
 .back-link {
+  margin-bottom: 1rem;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -387,11 +377,38 @@ footer {
 }
 
 .back-link:hover {
+  color: var(--secondary-color);
   background-color: #0056b3;
   transform: scale(1.05);
 }
 
 .back-link:active {
+  background-color: #003f7f;
+  transform: scale(0.95);
+}
+
+.front-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007bff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 10px;  /* Optional: to add space from back-link */
+  position: absolute;
+  right: 32px; /* Matches the parent's right padding to keep it inside */
+
+}
+
+.front-link:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.front-link:active {
   background-color: #003f7f;
   transform: scale(0.95);
 }

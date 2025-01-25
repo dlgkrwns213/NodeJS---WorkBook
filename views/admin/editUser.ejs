@@ -1,0 +1,26 @@
+<section class="word-detail">
+  <a href="/admin/user/show" class="back-link">&lt; 뒤로</a>
+  <div class="word-title">
+    <h2><%= locals.title %></h2>
+  </div>
+
+  <form action="/admin/user/edit/<%= data._id %>?_method=PUT" method="POST" class="edit-word-form">
+    <div class="form-group">
+      <label for="userID"><b>유저 ID</b></label>
+      <input type="text" name="userID" id="userID" value="<%= data.userID %>" disabled>
+    </div>
+    
+    <div class="form-group">
+      <label for="name"><b>유저 이름</b></label>
+      <input type="text" name="name" id="name" value="<%= data.name %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password"><b>비밀번호</b></label>
+      <input type="text" name="password" id="password" value="" required>
+    </div>
+
+    <input type="submit" value="수정" class="btn btn-primary">
+  </form>
+</section>
+

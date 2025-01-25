@@ -1,0 +1,35 @@
+<section>
+  <h2 class="section-title">유저 목록</h2>
+  <% if (data.length > 0) { %>
+    <ul class="word-list">
+      <% data.forEach(user => { %>
+        <li>
+          <div>
+            <a href="/admin/user/edit/<%= user._id %>">
+              <%= user.name %>
+            </a>
+          </div>
+          <div class="word-controls">
+            <form action="/admin/user/delete/<%= user._id %>?_method=DELETE" method="POST" class="delete-form">
+              <button type="submit" class="btn btn-delete">삭제</button>
+            </form>
+          </div>
+        </li>
+    <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="no-words-message">등록된 유저가 없습니다.</p>
+  <% } %>
+</section>
+
+<script>
+  document.querySelectorAll('ul.word-list li').forEach(li => {
+    li.addEventListener('click', function () {
+      const link = this.querySelector('a');
+      if (link) {
+        window.location.href = link.href;
+      }
+    });
+  });
+</script>
+

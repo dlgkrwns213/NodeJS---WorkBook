@@ -40,9 +40,7 @@ router.post(
   CheckAdminLogin,
   expressAsyncHandler(async (req, res) => {
     try {
-      const { word, pronunciation, ...data } = req.body;
-
-      console.log("Received word data:", req.body);
+      const { chapter, word, pronunciation, ...data } = req.body;
 
       // meanings 데이터 변환
       const meanings = [];
@@ -66,6 +64,7 @@ router.post(
         word,
         pronunciation,
         meanings,
+        chapter,
       });
 
       // MongoDB에 저장
@@ -133,10 +132,11 @@ router.put(
   CheckAdminLogin,
   expressAsyncHandler(async (req, res) => {
     try {
-      const { word, pronunciation, meanings } = req.body;
+      const { chapter, word, pronunciation, meanings } = req.body;
       
       // 'meanings' 배열이 있는 경우 각 뜻을 업데이트
       const updatedData = {
+        chapter,
         word,
         pronunciation,
         meanings: meanings.map((meaning) => ({

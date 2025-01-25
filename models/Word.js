@@ -35,7 +35,11 @@ const wordSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-
+  meanings: [meaningSchema],
+  chapter: { // chapter 설정
+    type: Number,
+    required: true,
+  },
 });
 
 export default mongoose.model("Word", wordSchema);

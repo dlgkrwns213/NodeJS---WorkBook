@@ -11,6 +11,7 @@
             <% if (word.pronunciation) { %>
               <span class="word-pronunciation">/<%= word.pronunciation %>/</span>
             <% } %>
+            <span class="word-pronunciation">-chapter <%= word.chapter %></span>
           </div>
           <div class="word-controls">
             <a href="/admin/word/edit/<%= word._id %>" class="btn btn-edit"><b>편집</b></a>

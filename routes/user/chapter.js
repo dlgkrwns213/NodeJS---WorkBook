@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import Word from "../../models/Word.js";
+import Bookmark from "../../models/Bookmark.js";
 import expressAsyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 
@@ -17,7 +18,7 @@ const CheckUserLogin = (req, res, next) => {
   else {
     try {
       const decode = jwt.verify(userToken, jwtUserSecret);
-      req.userId = decode.indexOf;
+      req.userID = decode.id;
       next();
     } catch (error) {
       console.log(error);
@@ -42,16 +43,16 @@ router.get(
 );
 
 // Show Chapter total word
-// Get /user/chapter/:chapterId
+// Get /user/chapter/:chapterID
 router.get(
-  "/:chapterId",
+  "/:chapterID",
   CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     try {
-      const chapterId = req.params.chapterId
-      const words = await Word.find({ chapter: chapterId });
+      const chapterID = req.params.chapterID
+      const words = await Word.find({ chapter: chapterID });
 
-      res.render("user/chapterTotalWord", {id: chapterId, data: words, layout: "../views/layouts/userPage.ejs"});
+      res.render("user/chapterTotalWord", {chapterID, data: words, layout: "../views/layouts/userPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");
@@ -59,25 +60,30 @@ router.get(
   })
 );
 
-// Get /user/chapter/:chapterId/:wordId
+// Get /user/chapter/:chapterID/:wordID
 router.get(
-  "/:chapterId/:wordId",
+  "/:chapterID/:wordID",
   CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     try {
-      const chapterId = req.params.chapterId;
-      const wordId = req.params.wordId;
+      const chapterID = req.params.chapterID;
+      const wordID = req.params.wordID;
 
-      const words = await Word.find({ chapter: chapterId });
-      const wordIds = Object.values(words).map(w => w._id.toString());  // _id 값을 배열로 변환
+      const words = await Word.find({ chapter: chapterID });
+      const wordIDs = Object.values(words).map(w => w._id.toString());  // _id 값을 배열로 변환
 
-      const word = await Word.findOne({ _id: wordId });
-      const wordIndex = wordIds.indexOf(wordId);
+      const word = await Word.findOne({ _id: wordID });
+      const wordIndex = wordIDs.indexOf(wordID);
 
-      const befWordId = wordIndex > 0 ? wordIds[wordIndex-1] : null;
-      const nxtWordId = wordIndex < Object.keys(words).length - 1 ? wordIds[wordIndex+1] : null;
+      const befWordID = wordIndex > 0 ? wordIDs[wordIndex-1] : null;
+      const nxtWordID = wordIndex < Object.keys(words).length - 1 ? wordIDs[wordIndex+1] : null;
       
-      res.render("user/chapterWord", {wordIds: {befWordId, nxtWordId}, chapterId, data: word, layout: "../views/layouts/userWordPage.ejs"});
+      const userID = req.userID;
+      const exsitingBookmark = await Bookmark.findOne({ userID, wordID });
+
+      const saved = exsitingBookmark ? 1 : 0;
+      
+      res.render("user/chapterWord", {wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, chapterID, data: word, layout: "../views/layouts/userWordPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");

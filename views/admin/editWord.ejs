@@ -4,33 +4,33 @@
     <h2><%= locals.title %></h2>
   </div>
 
-  <form action="/admin/word/edit/<%= data._id %>?_method=PUT" method="POST" class="edit-word-form">
+  <form action="/admin/word/edit/<%= data._ID %>?_method=PUT" method="POST" class="edit-word-form">
     <div class="chapter-selection-wrapper">
       <label for="chapter">챕터</label>
-      <select id="chapter" name="chapter" class="chapter-dropdown"></select>
+      <select ID="chapter" name="chapter" class="chapter-dropdown"></select>
     </div>
 
     <div class="form-group">
       <label for="word"><b>단어</b></label>
-      <input type="text" name="word" id="word" value="<%= data.word %>" required>
+      <input type="text" name="word" ID="word" value="<%= data.word %>" required>
     </div>
     
     <div class="form-group">
       <label for="pronunciation"><b>발음</b></label>
-      <input type="text" name="pronunciation" id="pronunciation" value="<%= data.pronunciation || '' %>">
+      <input type="text" name="pronunciation" ID="pronunciation" value="<%= data.pronunciation || '' %>">
     </div>
 
-    <div id="meaningsContainer">
+    <div ID="meaningsContainer">
       <% data.meanings.forEach((meaning, index) => { %>
         <div class="meaning-group">
           <div class="form-group">
             <label for="partOfSpeech-<%= index %>">품사</label>
-            <input type="text" name="meanings[<%= index %>][partOfSpeech]" id="partOfSpeech-<%= index %>" value="<%= meaning.partOfSpeech %>" required>
+            <input type="text" name="meanings[<%= index %>][partOfSpeech]" ID="partOfSpeech-<%= index %>" value="<%= meaning.partOfSpeech %>" required>
           </div>
 
           <div class="form-group">
             <label for="meaning-<%= index %>">뜻</label>
-            <input type="text" name="meanings[<%= index %>][meaning]" id="meaning-<%= index %>" value="<%= meaning.meaning %>" required>
+            <input type="text" name="meanings[<%= index %>][meaning]" ID="meaning-<%= index %>" value="<%= meaning.meaning %>" required>
           </div>
 
           <div class="examples-container">
@@ -38,12 +38,12 @@
               <div class="example-group">
                 <div class="form-group">
                   <label for="example-<%= index %>-<%= exIndex %>">예문</label>
-                  <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][example]" id="example-<%= index %>-<%= exIndex %>" value="<%= example.example %>" required>
+                  <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][example]" ID="example-<%= index %>-<%= exIndex %>" value="<%= example.example %>" required>
                 </div>
 
                 <div class="form-group">
                   <label for="translation-<%= index %>-<%= exIndex %>">해석</label>
-                  <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][translation]" id="translation-<%= index %>-<%= exIndex %>" value="<%= example.translation %>" required>
+                  <input type="text" name="meanings[<%= index %>][examples][<%= exIndex %>][translation]" ID="translation-<%= index %>-<%= exIndex %>" value="<%= example.translation %>" required>
                 </div>
               </div>
             <% }) %>
@@ -53,19 +53,19 @@
       <% }) %>
     </div>
 
-    <button type="button" id="addMeaningBtn" class="add-meaning-btn">뜻 추가</button>
+    <button type="button" ID="addMeaningBtn" class="add-meaning-btn">뜻 추가</button>
     <input type="submit" value="수정" class="btn btn-primary">
   </form>
 
   <div class="delete-section">
-    <form action="/admin/word/delete/<%= data._id %>?_method=DELETE" method="POST">
+    <form action="/admin/word/delete/<%= data._ID %>?_method=DELETE" method="POST">
       <input type="submit" value="삭제" class="btn btn-delete">
     </form>
   </div>
 </section>
 
 <script>
-  const selectedNumber = document.getElementById('chapter');
+  const selectedNumber = document.getElementByID('chapter');
 
   for (let i=1;i<=30;i++) {
     const option = document.createElement('option');

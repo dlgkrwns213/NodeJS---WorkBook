@@ -107,3 +107,22 @@
   background-color: #3e8e41;
   border-color: #3e8e41;
 }
+
+/* 즐겨찾기 설정 */
+.star-button {
+  background-color: transparent;
+  color: #f39c12; /* 별색상 */
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.star-button:hover {
+  color: #d35400; /* 호버 시 색상 변경 */
+  transform: scale(1.2); /* 크기 확대 효과 */
+}
+
+.star-button:active {
+  transform: scale(1); /* 클릭 시 원래 크기로 */
+}

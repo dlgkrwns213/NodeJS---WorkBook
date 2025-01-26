@@ -310,10 +310,13 @@ footer {
 }
 
 .word-title {
-  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center; /* 세로 정렬 */
 }
 
 .word-title h2 {
+  font-size: 1.5rem;
+  flex-grow: 1; /* h2가 남은 공간을 차지하도록 */
   color: var(--primary-color);
   font-size: 2rem;
 }

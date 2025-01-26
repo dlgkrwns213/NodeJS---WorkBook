@@ -1,15 +1,20 @@
 <section class="word-detail">
-  <a href="<%= wordIds.befWordId ? `/user/chapter/${chapterId}/${wordIds.befWordId}` : '#' %>" 
+  <a href="<%= wordIDs.befWordID ? `/user/chapter/${chapterID}/${wordIDs.befWordID}` : '#' %>" 
     class="back-link" 
-    style="<%= wordIds.befWordId ? '' : 'visibility: hidden;' %>">&lt; 이전 단어</a>
+    style="<%= wordIDs.befWordID ? '' : 'visibility: hidden;' %>">&lt; 이전 단어</a>
  
- <a href="<%= wordIds.nxtWordId ? `/user/chapter/${chapterId}/${wordIds.nxtWordId}` : '#' %>" 
+ <a href="<%= wordIDs.nxtWordID ? `/user/chapter/${chapterID}/${wordIDs.nxtWordID}` : '#' %>" 
     class="front-link" 
-    style="<%= wordIds.nxtWordId ? '' : 'visibility: hidden;' %>">다음 단어 &gt;</a>
+    style="<%= wordIDs.nxtWordID ? '' : 'visibility: hidden;' %>">다음 단어 &gt;</a>
  
 
   <div class="word-title">
     <h2><%= data.word %></h2>
+    <button class="star-button" aria-label="Bookmark" onclick="toggleBookmark(<%= bookmark.saved %>)">
+      <%= bookmark.saved === 0 ? '☆' : '★' %>
+    </button>
+
+    
   </div>
 
   <section class="word-content">
@@ -37,3 +42,34 @@
   </section>
 </section>
 
+<script>
+  async function toggleBookmark(saved) {
+    const userID = '<%= bookmark.userID %>';
+    const wordID = '<%= bookmark.wordID %>';
+  
+    const url = `/user/bookmark/${wordID}`;
+    const options = saved === 0 
+      ? {
+        method: 'POST', 
+        body: JSON.stringify({ userID, wordID }),
+        headers: {'Content-Type': 'application/json' }
+      }
+      : {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json' }
+      };
+
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        location.reload();
+      } else {
+        console.error("응답 오류 발생");
+      }
+      saved ^= 1;
+
+    } catch (error) {
+      console.error("network error: ", error);
+    }
+  };
+</script>

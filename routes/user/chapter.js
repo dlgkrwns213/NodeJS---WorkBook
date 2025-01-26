@@ -77,7 +77,7 @@ router.get(
       const befWordId = wordIndex > 0 ? wordIds[wordIndex-1] : null;
       const nxtWordId = wordIndex < Object.keys(words).length - 1 ? wordIds[wordIndex+1] : null;
       
-      res.render("user/chapterWord", {wordIds: {befWordId, nxtWordId}, chapterId, data: word, layout: "../views/layouts/userPage.ejs"});
+      res.render("user/chapterWord", {wordIds: {befWordId, nxtWordId}, chapterId, data: word, layout: "../views/layouts/userWordPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");

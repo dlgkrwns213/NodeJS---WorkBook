@@ -150,6 +150,7 @@ header h3 {
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  line-height: 22px;
 }
 
 .cta-button,
@@ -377,7 +378,6 @@ footer {
 }
 
 .back-link:hover {
-  color: var(--secondary-color);
   background-color: #0056b3;
   transform: scale(1.05);
 }

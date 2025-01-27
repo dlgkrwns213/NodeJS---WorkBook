@@ -1,46 +1,28 @@
-import dotenv from "dotenv";
 import express from "express";
 import Word from "../../models/Word.js";
 import Bookmark from "../../models/Bookmark.js";
+import User from "../../models/User.js";
 import expressAsyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-
-dotenv.config();
 
 const router = express.Router();
-const jwtUserSecret = process.env.JWT_USER_SECRET || "USER_SECRET";
 
-// Check User Login
-const CheckUserLogin = (req, res, next) => {
-  const userToken = req.cookies.userToken;
-  if (!userToken)
-    res.redirect("/login");
-  else {
-    try {
-      const decode = jwt.verify(userToken, jwtUserSecret);
-      req.userID = decode.id;
-      next();
-    } catch (error) {
-      console.log(error);
-      res.redirect("/");
+router.get("/", 
+  expressAsyncHandler( async (req, res) => {
+    const locals = {
+      name: req.username,
     }
-  }
-}
 
-router.get("/", CheckUserLogin, (req, res) => {
-  const locals = {
-    title: "단어장",
-  }
-  res.render("user/default", {locals, layout: "../views/layouts/userPage.ejs"});
-});
+    res.render("user/default", {locals, layout: "../views/layouts/userPage.ejs"});
+  })
+);
 
 router.get(
   "/show",
-  CheckUserLogin, 
   expressAsyncHandler( async (req, res) => {
     try {
       const locals = {
         title: "전체 단어장",
+        name: req.username,
       }
       const wordTotal = await Word.find();
       res.render("user/showTotalWord", {locals, data: wordTotal, layout: "../views/layouts/userPage.ejs"})
@@ -53,8 +35,12 @@ router.get(
 
 router.get(
   "/show/:ID",
-  CheckUserLogin, 
   expressAsyncHandler( async (req, res) => {
+    const locals = {
+      title: word.word,
+      name: req.username,
+    }
+
     const wordID = req.params.ID;
 
     const totalWord = await Word.find();
@@ -71,9 +57,6 @@ router.get(
 
     const saved = exsitingBookmark ? 1 : 0;
 
-    const locals = {
-      title: word.word,
-    };
     res.render("user/showWord", {locals, wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, data: word, layout: "../views/layouts/userWordPage.ejs"});
   })
 );

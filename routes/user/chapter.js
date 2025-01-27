@@ -1,40 +1,21 @@
-import dotenv from "dotenv";
 import express from "express";
 import Word from "../../models/Word.js";
 import Bookmark from "../../models/Bookmark.js";
 import expressAsyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-
-dotenv.config();
 
 const router = express.Router();
-const jwtUserSecret = process.env.JWT_USER_SECRET || "USER_SECRET";
-
-// Check User Login
-const CheckUserLogin = (req, res, next) => {
-  const userToken = req.cookies.userToken;
-  if (!userToken)
-    res.redirect("/login");
-  else {
-    try {
-      const decode = jwt.verify(userToken, jwtUserSecret);
-      req.userID = decode.id;
-      next();
-    } catch (error) {
-      console.log(error);
-      res.redirect("/");
-    }
-  }
-};
 
 // Show Chapter
 // Get /user/chapter
 router.get(
   "/",
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
+    const locals = {
+      name: req.username,
+    }
+
     try {
-      res.render("user/chapter", {layout: "../views/layouts/userPage.ejs"});
+      res.render("user/chapter", {locals, layout: "../views/layouts/userPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");
@@ -46,13 +27,16 @@ router.get(
 // Get /user/chapter/:chapterID
 router.get(
   "/:chapterID",
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
+    const locals = {
+      name: req.username,
+    }
+
     try {
       const chapterID = req.params.chapterID
       const words = await Word.find({ chapter: chapterID });
 
-      res.render("user/chapterTotalWord", {chapterID, data: words, layout: "../views/layouts/userPage.ejs"});
+      res.render("user/chapterTotalWord", {locals, chapterID, data: words, layout: "../views/layouts/userPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");
@@ -63,8 +47,11 @@ router.get(
 // Get /user/chapter/:chapterID/:wordID
 router.get(
   "/:chapterID/:wordID",
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
+    const locals = {
+      name: req.username,
+    }
+
     try {
       const chapterID = req.params.chapterID;
       const wordID = req.params.wordID;
@@ -83,7 +70,7 @@ router.get(
 
       const saved = exsitingBookmark ? 1 : 0;
       
-      res.render("user/chapterWord", {wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, chapterID, data: word, layout: "../views/layouts/userWordPage.ejs"});
+      res.render("user/chapterWord", {locals, wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, chapterID, data: word, layout: "../views/layouts/userWordPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");

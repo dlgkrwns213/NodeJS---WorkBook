@@ -1,39 +1,19 @@
-import dotenv from "dotenv";
 import express from "express";
 import Word from "../../models/Word.js";
 import Bookmark from "../../models/Bookmark.js";
 import expressAsyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-
-dotenv.config();
 
 const router = express.Router();
-const jwtUserSecret = process.env.JWT_USER_SECRET || "USER_SECRET";
-
-// Check User Login
-const CheckUserLogin = (req, res, next) => {
-  const userToken = req.cookies.userToken;
-  if (!userToken)
-    res.redirect("/login");
-  else {
-    try {
-      const decode = jwt.verify(userToken, jwtUserSecret);
-      req.userID = decode.id;
-      next();
-    } catch (error) {
-      console.log(error);
-      res.redirect("/");
-    }
-  }
-};
 
 // Show Total bookmark
 // Get /user/bookmark/show
 router.get(
   "/show",
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     try {
+      const locals = {
+        name: req.username,
+      }
       const userID = req.userID;
 
       const bookmarkUserWordTotal = await Bookmark.find({ userID });
@@ -42,7 +22,7 @@ router.get(
       // bookmarkWordIDs 에 있는 것만 가져오기
       const bookmarkWordTotal = await Word.find({ _id: { $in: bookmarkUserWordIDs}});
 
-      res.render("user/bookmarkTotalWord", {data: bookmarkWordTotal, layout: "../views/layouts/userPage.ejs"});
+      res.render("user/bookmarkTotalWord", {locals, data: bookmarkWordTotal, layout: "../views/layouts/userPage.ejs"});
     } catch (error) {
       console.error(error);
       res.status(500).send("server error");
@@ -54,9 +34,11 @@ router.get(
 // Get /user/bookmark/show/:wordID
 router.get(
   "/show/:wordID",
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     try {
+      const locals = {
+        name: req.username,
+      }
       const userID = req.userID;
       const wordID = req.params.wordID;
 
@@ -76,7 +58,7 @@ router.get(
       const exsitingBookmark = await Bookmark.findOne({ userID, wordID });
       const saved = exsitingBookmark ? 1 : 0;
 
-      res.render("user/bookmarkWord", {wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, data: word, layout: "../views/layouts/userWordPage.ejs"});
+      res.render("user/bookmarkWord", {locals, wordIDs: {befWordID, nxtWordID}, bookmark: {saved, userID, wordID}, data: word, layout: "../views/layouts/userWordPage.ejs"});
     } catch (error) {
       console.log(error);
       res.status(500).send("server error");
@@ -88,7 +70,6 @@ router.get(
 // Post /user/bookmark/:wordID
 router.post(
   '/:wordID',
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     const userID = req.userID;
     const wordID = req.params.wordID;
@@ -111,7 +92,6 @@ router.post(
 // Delete /user/bookmark//:wordID
 router.delete(
   '/:wordID',
-  CheckUserLogin,
   expressAsyncHandler( async (req, res) => {
     const userID = req.userID;
     const wordID = req.params.wordID;

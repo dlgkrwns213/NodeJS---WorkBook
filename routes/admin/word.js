@@ -1,43 +1,24 @@
-import dotenv from "dotenv";
 import express from "express";
 import Word from "../../models/Word.js";
 import expressAsyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-
-dotenv.config();
 
 const router = express.Router();
-const jwtAdminSecret = process.env.JWT_ADMIN_SECRET || 'ADMIN_SECRET'
 
-// Check Admin Login
-const CheckAdminLogin = (req, res, next) => {
-  const adminToken = req.cookies.adminToken;
-  if (!adminToken)
-    res.redirect("/login");
-  else {
-    try {
-      const decode = jwt.verify(adminToken, jwtAdminSecret);
-      req.adminId = decode.id;
-      next();
-    } catch (error) {
-      // console.log(error);
-      res.redirect("/");
-    }
-  }
-};
-
-router.get("/", CheckAdminLogin, (req, res) => {
+router.get(
+  "/",
+  (req, res) => {
   res.render("admin/default", {layout: "../views/layouts/adminPage.ejs"});
 });
 
-router.get("/add", CheckAdminLogin, (req, res) => {
+router.get(
+  "/add",
+  (req, res) => {
   res.render("admin/saveWord", {layout: "../views/layouts/adminPage.ejs"});
 });
 
 
 router.post(
   "/save",
-  CheckAdminLogin,
   expressAsyncHandler(async (req, res) => {
     try {
       const { chapter, word, pronunciation, ...data } = req.body;
@@ -90,7 +71,6 @@ router.post(
 
 router.get(
   "/show",
-  CheckAdminLogin,
   expressAsyncHandler( async (req, res) => {
     try {
       const wordTotal = await Word.find();
@@ -104,7 +84,6 @@ router.get(
 
 router.get(
   "/show/:id",
-  CheckAdminLogin, 
   expressAsyncHandler( async (req, res) => {
     const data = await Word.findOne({_id: req.params.id});
 
@@ -117,7 +96,6 @@ router.get(
 
 router.get(
   "/edit/:id",
-  CheckAdminLogin,
   expressAsyncHandler( async (req, res) => {
     const locals = {
       title: "word 편집"
@@ -129,7 +107,6 @@ router.get(
 
 router.put(
   "/edit/:id",
-  CheckAdminLogin,
   expressAsyncHandler(async (req, res) => {
     try {
       const { chapter, word, pronunciation, meanings } = req.body;
@@ -161,7 +138,6 @@ router.put(
 
 router.delete(
   "/delete/:id",
-  CheckAdminLogin,
   expressAsyncHandler( async (req, res) => {
     try {
       await Word.deleteOne({ _id: req.params.id });
